@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=62.4.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-doxygen"
+description = "tree-sitter grammer for Doxygen markup"
+version = "0.0.1"
+keywords = ["incremental", "parsing", "tree-sitter", "doxygen"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+authors = [{ name = "Marian Buschsieweke", email = "marian.buschsieweke@posteo.net" }]
+requires-python = ">=3.10"
+license.text = "0BSD"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://codeberg.org/maribu/tree-sitter-doxygen"
+Funding = ""
+
+[project.optional-dependencies]
+core = ["tree-sitter~=0.24"]
+
+[tool.cibuildwheel]
+build = "cp310-*"
+build-frontend = "build"
