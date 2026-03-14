@@ -1,0 +1,300 @@
+===============================================================================
+@return command (oneliner)
+===============================================================================
+
+/**
+ * @return  This is some basic description
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description))))
+
+===============================================================================
+@return command (multiple lines)
+===============================================================================
+
+/**
+ * @return  This is some
+ *          basic description
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description))))
+
+===============================================================================
+@returns command (oneliner)
+===============================================================================
+
+/**
+ * @returns This is some basic description
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description))))
+
+===============================================================================
+@returns command (multiple lines)
+===============================================================================
+
+/**
+ * @returns This is some
+ *          basic description
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description))))
+
+===============================================================================
+@param command (no attributes)
+===============================================================================
+
+/**
+ * @param           dest    Pointer to destination buffer
+ * @param           src     Pointer to source buffer
+ * @param           n       Number of bytes to copy
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (description))
+    (block_command
+      (parameter)
+      (description))
+    (block_command
+      (parameter)
+      (description))))
+
+===============================================================================
+@param command (simple attributes)
+===============================================================================
+
+/**
+ * @param[out]      dest    Pointer to destination buffer
+ * @param[in]       src     Pointer to source buffer
+ * @param[in]       n       Number of bytes to copy
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (param_attribute)
+      (parameter)
+      (description))
+    (block_command
+      (param_attribute)
+      (parameter)
+      (description))
+    (block_command
+      (param_attribute)
+      (parameter)
+      (description))))
+
+===============================================================================
+@param command (mixed attributes)
+===============================================================================
+
+/**
+ * @param[in,out]   dst     String to append to
+ * @param[in]       src     String to append to @p dst
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (param_attribute)
+      (parameter)
+      (description))
+    (block_command
+      (param_attribute)
+      (parameter)
+      (description
+        (inline_command
+          (parameter))))))
+
+===============================================================================
+@category command (one parameter)
+===============================================================================
+
+/**
+ * @category foo
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter))))
+
+===============================================================================
+@category command (two parameters)
+===============================================================================
+
+/**
+ * @category foo foo.h
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (parameter))))
+
+===============================================================================
+@category command (three parameters)
+===============================================================================
+
+/**
+ * @category foo foo.h foo_header
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (parameter)
+      (parameter))))
+
+===============================================================================
+@ingroup command (one parameter)
+===============================================================================
+
+/**
+ * @ingroup group_foo
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter))))
+
+===============================================================================
+@ingroup command (two parameters)
+===============================================================================
+
+/**
+ * @ingroup group_foo group_bar
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (parameter))))
+
+===============================================================================
+@ingroup command (three parameters)
+===============================================================================
+
+/**
+ * @ingroup group_foo group_bar group_baz
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (parameter)
+      (parameter))))
+
+===============================================================================
+@ingroup command (four parameters)
+===============================================================================
+
+/**
+ * @ingroup group_foo group_bar group_baz group_blah
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (parameter)
+      (parameter)
+      (parameter))))
+
+===============================================================================
+@fn command
+===============================================================================
+
+/**
+ * @fn void Overload_Test::drawRect(int x,int y,int w,int h)
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (code_parameter))))
+
+===============================================================================
+@par command (no title)
+===============================================================================
+
+/**
+ * @par
+ * This is the par description.
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (block_command_with_optional_title_and_description
+        (description)))))
+
+===============================================================================
+@par command (with title)
+===============================================================================
+
+/**
+ * @par This is the par title
+ * This is the par description.
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (block_command_with_optional_title_and_description
+        (parameter)
+        (description)))))

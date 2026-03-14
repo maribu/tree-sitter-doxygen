@@ -1,0 +1,25 @@
+===============================================================================
+Postfix style parameter documentation with attribute
+===============================================================================
+
+///< [out] The output data will be written in this buffer
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (postfix_doc
+    (param_attribute)))
+
+===============================================================================
+@p command as first item (must not match @param command)
+===============================================================================
+
+ /// @p foo this must parse as description with inline command
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (paragraph
+      (inline_command
+        (parameter)))))
