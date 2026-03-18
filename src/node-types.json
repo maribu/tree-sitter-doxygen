@@ -738,7 +738,7 @@
     "fields": {}
   },
   {
-    "type": "description",
+    "type": "content",
     "named": true,
     "fields": {},
     "children": {
@@ -771,6 +771,21 @@
         },
         {
           "type": "link",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "description",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "content",
           "named": true
         }
       ]
@@ -879,35 +894,11 @@
     "named": true,
     "fields": {
       "text": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "bold",
-            "named": true
-          },
-          {
-            "type": "code",
-            "named": true
-          },
-          {
-            "type": "email",
-            "named": true
-          },
-          {
-            "type": "inline_command",
-            "named": true
-          },
-          {
-            "type": "inline_formula",
-            "named": true
-          },
-          {
-            "type": "italic",
-            "named": true
-          },
-          {
-            "type": "link",
+            "type": "content",
             "named": true
           }
         ]
@@ -998,34 +989,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "bold",
-          "named": true
-        },
-        {
-          "type": "code",
-          "named": true
-        },
-        {
-          "type": "email",
-          "named": true
-        },
-        {
-          "type": "inline_command",
-          "named": true
-        },
-        {
-          "type": "inline_formula",
-          "named": true
-        },
-        {
-          "type": "italic",
-          "named": true
-        },
-        {
-          "type": "link",
+          "type": "content",
           "named": true
         },
         {
@@ -1041,34 +1008,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "bold",
-          "named": true
-        },
-        {
-          "type": "code",
-          "named": true
-        },
-        {
-          "type": "email",
-          "named": true
-        },
-        {
-          "type": "inline_command",
-          "named": true
-        },
-        {
-          "type": "inline_formula",
-          "named": true
-        },
-        {
-          "type": "italic",
-          "named": true
-        },
-        {
-          "type": "link",
+          "type": "content",
           "named": true
         },
         {
