@@ -9,7 +9,8 @@ C++ style comments (/// flavor)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C++ style comments (//! flavor)
@@ -22,7 +23,8 @@ C++ style comments (//! flavor)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C++ style comments, postfix (/// flavor)
@@ -33,7 +35,8 @@ C++ style comments, postfix (/// flavor)
 -------------------------------------------------------------------------------
 
 (source_file
-  (postfix_doc))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 C++ style comments, postfix (//! flavor)
@@ -44,7 +47,8 @@ C++ style comments, postfix (//! flavor)
 -------------------------------------------------------------------------------
 
 (source_file
-  (postfix_doc))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 C++ style comment spanning multiple lines
@@ -61,7 +65,12 @@ C++ style comment spanning multiple lines
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)
+        (content)
+        (content)
+        (content)
+        (content)))))
 
 ===============================================================================
 C style comments (/** flavor, single line)
@@ -74,7 +83,8 @@ C style comments (/** flavor, single line)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C style comments (/** flavor, multiple lines)
@@ -89,7 +99,8 @@ C style comments (/** flavor, multiple lines)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C style comments (/*! flavor, single line)
@@ -102,7 +113,8 @@ C style comments (/*! flavor, single line)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C style comments (/** flavor, multiple lines)
@@ -117,7 +129,8 @@ C style comments (/** flavor, multiple lines)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 C style comments (/** flavor, single line, postfix)
@@ -128,7 +141,8 @@ C style comments (/** flavor, single line, postfix)
 -------------------------------------------------------------------------------
 
 (source_file
-  (postfix_doc))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 C style comments (/** flavor, multiple lines, postfix)
@@ -142,7 +156,8 @@ C style comments (/** flavor, multiple lines, postfix)
 
 (source_file
   (prefix_doc
-    (paragraph)))
+    (paragraph
+      (content))))
 
 ===============================================================================
 C style comments (/*! flavor, single line, postfix)
@@ -153,7 +168,8 @@ C style comments (/*! flavor, single line, postfix)
 -------------------------------------------------------------------------------
 
 (source_file
-  (postfix_doc))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 C style comments (/** flavor, multiple lines, postfix)
@@ -168,4 +184,5 @@ C style comments (/** flavor, multiple lines, postfix)
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))

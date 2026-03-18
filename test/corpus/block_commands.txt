@@ -11,7 +11,8 @@
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 @return command (multiple lines)
@@ -27,7 +28,9 @@
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)
+        (content)))))
 
 ===============================================================================
 @returns command (oneliner)
@@ -42,7 +45,8 @@
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 @returns command (multiple lines)
@@ -58,7 +62,9 @@
 (source_file
   (prefix_doc
     (block_command
-      (description))))
+      (description
+        (content)
+        (content)))))
 
 ===============================================================================
 @param command (no attributes)
@@ -76,13 +82,16 @@
   (prefix_doc
     (block_command
       (parameter)
-      (description))
+      (description
+        (content)))
     (block_command
       (parameter)
-      (description))
+      (description
+        (content)))
     (block_command
       (parameter)
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 @param command (simple attributes)
@@ -101,15 +110,18 @@
     (block_command
       (param_attribute)
       (parameter)
-      (description))
+      (description
+        (content)))
     (block_command
       (param_attribute)
       (parameter)
-      (description))
+      (description
+        (content)))
     (block_command
       (param_attribute)
       (parameter)
-      (description))))
+      (description
+        (content)))))
 
 ===============================================================================
 @param command (mixed attributes)
@@ -127,13 +139,15 @@
     (block_command
       (param_attribute)
       (parameter)
-      (description))
+      (description
+        (content)))
     (block_command
       (param_attribute)
       (parameter)
       (description
-        (inline_command
-          (parameter))))))
+        (content
+          (inline_command
+            (parameter)))))))
 
 ===============================================================================
 @category command (one parameter)
@@ -279,7 +293,8 @@
   (prefix_doc
     (block_command
       (block_command_with_optional_title_and_description
-        (description)))))
+        (description
+          (content))))))
 
 ===============================================================================
 @par command (with title)
@@ -297,4 +312,5 @@
     (block_command
       (block_command_with_optional_title_and_description
         (parameter)
-        (description)))))
+        (description
+          (content))))))

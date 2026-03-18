@@ -9,8 +9,9 @@
 (source_file
   (prefix_doc
     (paragraph
-      (inline_command
-        (parameter)))))
+      (content
+        (inline_command
+          (parameter))))))
 
 ===============================================================================
 @ref command (no title)
@@ -23,8 +24,9 @@
 (source_file
   (prefix_doc
     (paragraph
-      (inline_command
-        (parameter)))))
+      (content
+        (inline_command
+          (parameter))))))
 
 ===============================================================================
 @ref command (with title)
@@ -37,9 +39,10 @@
 (source_file
   (prefix_doc
     (paragraph
-      (inline_command
-        (parameter)
-        (parameter)))))
+      (content
+        (inline_command
+          (parameter)
+          (parameter))))))
 
 ===============================================================================
 font style commands
@@ -52,12 +55,13 @@ font style commands
 (source_file
   (prefix_doc
     (paragraph
-      (inline_command
-        (parameter))
-      (inline_command
-        (parameter))
-      (inline_command
-        (parameter)))))
+      (content
+        (inline_command
+          (parameter))
+        (inline_command
+          (parameter))
+        (inline_command
+          (parameter))))))
 
 ===============================================================================
 nested font style commands
@@ -70,10 +74,11 @@ nested font style commands
 (source_file
   (prefix_doc
     (paragraph
-      (inline_command
+      (content
         (inline_command
           (inline_command
-            (parameter)))))))
+            (inline_command
+              (parameter))))))))
 
 ===============================================================================
 inline formula (`\f(` ... `\f)`)
@@ -86,8 +91,9 @@ inline formula (`\f(` ... `\f)`)
 (source_file
   (prefix_doc
     (paragraph
-      (inline_formula
-        (math)))))
+      (content
+        (inline_formula
+          (math))))))
 
 ===============================================================================
 inline formula (`\f$` ... `\f$`)
@@ -100,5 +106,6 @@ inline formula (`\f$` ... `\f$`)
 (source_file
   (prefix_doc
     (paragraph
-      (inline_formula
-        (math)))))
+      (content
+        (inline_formula
+          (math))))))

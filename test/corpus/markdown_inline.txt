@@ -9,9 +9,10 @@ Basic inline formatting
 (source_file
   (prefix_doc
     (paragraph
-      (bold)
-      (italic)
-      (code))))
+      (content
+        (bold)
+        (italic)
+        (code)))))
 
 ===============================================================================
 Link: inline style, single line
@@ -24,8 +25,10 @@ Link: inline style, single line
 (source_file
   (prefix_doc
     (paragraph
-      (link
-        (link_uri)))))
+      (content
+        (link
+          (content)
+          (link_uri))))))
 
 ===============================================================================
 Link: reference style, single line
@@ -39,11 +42,14 @@ Link: reference style, single line
 (source_file
   (prefix_doc
     (paragraph
-      (link
-        (link_ref))
-      (link
-        (link_ref)
-        (link_uri)))))
+      (content
+        (link
+          (content)
+          (link_ref)))
+      (content
+        (link
+          (link_ref)
+          (link_uri))))))
 
 ===============================================================================
 Link: reference style, short notation
@@ -57,11 +63,13 @@ This is a [link] in short notation.
 (source_file
   (prefix_doc
     (paragraph
-      (link
-        (link_ref))
-      (link
-        (link_ref)
-        (link_uri)))))
+      (content
+        (link
+          (link_ref)))
+      (content
+        (link
+          (link_ref)
+          (link_uri))))))
 
 ===============================================================================
 Markdown headers
@@ -81,6 +89,8 @@ And more text
   (prefix_doc
     (header)
     (header)
-    (paragraph)
+    (paragraph
+      (content))
     (header)
-    (paragraph)))
+    (paragraph
+      (content))))

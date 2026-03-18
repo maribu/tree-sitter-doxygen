@@ -341,11 +341,11 @@ export default grammar({
       prec(-1, $._parse_text),
     ),
 
-    _line: $ => repeat1($._inline),
+    content: $ => repeat1($._inline),
 
     _parse_text: $ => seq(
-      $._line,
-      repeat(seq($._linebreak, $._ext_cont, $._line)),
+      $.content,
+      repeat(seq($._linebreak, $._ext_cont, $.content)),
     ),
 
     _inline: $ => seq(
@@ -426,19 +426,19 @@ export default grammar({
     ),
 
     _link_inline: $ => seq(
-      '[', field('text', $._line), '](', $.link_uri, ')'
+      '[', field('text', $.content), '](', $.link_uri, ')'
     ),
 
     _link_ref_long: $ => seq(
-      '[', field('text', $._line), '][', alias($.link_uri, $.link_ref), ']'
+      '[', field('text', $.content), '][', alias($.link_uri, $.link_ref), ']'
     ),
 
     _link_ref_def: $ => seq(
-      '[', alias($._line, $.link_ref), ']:', $.link_uri,
+      '[', alias($.content, $.link_ref), ']:', $.link_uri,
     ),
 
     _link_ref_short: $ => seq(
-      '[', alias($._line, $.link_ref), ']',
+      '[', alias($.content, $.link_ref), ']',
     ),
 
 

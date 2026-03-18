@@ -6,7 +6,7 @@
 (block_command
   (parameter) @variable.parameter)
 (block_command
-  (description) @string)
+  (description (content) @string))
 
 ; inline commands
 (inline_command
@@ -44,10 +44,10 @@
 ; let important commands stick out
 (block_command
   command: _ @_cmd @keyword
-  (description) @warning
+  (description (content) @warning)
   (#any-of? @_cmd "warning" "note"))
 
 (block_command
   command: _ @_cmd @keyword
-  (description) @markup.heading
+  (description (content) @markup.heading)
   (#any-of? @_cmd "brief"))
