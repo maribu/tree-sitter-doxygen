@@ -21,10 +21,13 @@ export default grammar({
   name: 'doxygen',
 
   conflicts: $ => [
+    [$._block_command_param],
+    [$._block_command_with_description],
+    [$._block_command_with_one_parameter_and_description],
+    [$._markdown_list],
+    [$._markdown_table],
     [$._parse_text],
     [$._prefix_doc_body],
-    [$._markdown_table],
-    [$._markdown_list],
   ],
 
   extras: _ => [
@@ -334,7 +337,10 @@ export default grammar({
 
     code_parameter: _ => /[^\r\n]+/,
 
-    description: $ => $._parse_text,
+    description: $ => seq(
+      optional(seq($._linebreak, $._ext_cont)),
+      $._parse_text,
+    ),
 
     paragraph: $ => choice(
       $.markdown,
