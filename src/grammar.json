@@ -4915,8 +4915,34 @@
       "value": "[^\\r\\n]+"
     },
     "description": {
-      "type": "SYMBOL",
-      "name": "_parse_text"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_linebreak"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ext_cont"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_parse_text"
+        }
+      ]
     },
     "paragraph": {
       "type": "CHOICE",
@@ -6004,16 +6030,25 @@
   ],
   "conflicts": [
     [
-      "_parse_text"
+      "_block_command_param"
     ],
     [
-      "_prefix_doc_body"
+      "_block_command_with_description"
+    ],
+    [
+      "_block_command_with_one_parameter_and_description"
+    ],
+    [
+      "_markdown_list"
     ],
     [
       "_markdown_table"
     ],
     [
-      "_markdown_list"
+      "_parse_text"
+    ],
+    [
+      "_prefix_doc_body"
     ]
   ],
   "precedences": [],
