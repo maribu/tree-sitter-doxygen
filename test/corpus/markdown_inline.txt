@@ -94,3 +94,23 @@ And more text
     (header)
     (paragraph
       (content))))
+
+===============================================================================
+Inline markdown in block command description
+===============================================================================
+
+/**
+ * @pre     @p dest is **not** `NULL`
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description
+        (content
+          (inline_command
+            (parameter))
+          (bold)
+          (code))))))
