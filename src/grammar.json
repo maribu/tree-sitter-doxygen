@@ -5970,14 +5970,14 @@
           ]
         },
         {
+          "type": "SYMBOL",
+          "name": "_linebreak"
+        },
+        {
           "type": "REPEAT",
           "content": {
             "type": "SEQ",
             "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_linebreak"
-              },
               {
                 "type": "CHOICE",
                 "members": [
@@ -5997,10 +5997,6 @@
               }
             ]
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_linebreak"
         },
         {
           "type": "CHOICE",
