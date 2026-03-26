@@ -5979,17 +5979,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_ext_new"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_ext_cont"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_ext_cont"
               },
               {
                 "type": "SYMBOL",
@@ -5999,17 +5990,8 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_ext_new"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_ext_cont"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_ext_cont"
         },
         {
           "type": "SYMBOL",
