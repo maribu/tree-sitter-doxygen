@@ -587,6 +587,19 @@ static bool _scan_code_lang(bool *result, Scanner *scanner, TSLexer *lexer)
     return true;
 }
 
+static bool _consume_word(TSLexer *lexer, const char *word)
+{
+    while (*word) {
+        if (lexer->lookahead != *word) {
+            return false;
+        }
+        _consume(lexer);
+        word++;
+    }
+
+    return true;
+}
+
 /**
  * @brief   Try consuming a code line or a code end marker
  * @param[out]      result          Whether a symbol was matched or not
@@ -626,29 +639,14 @@ static bool _scan_code_line_or_end(bool *result, Scanner *scanner, TSLexer *lexe
         goto match_code_line;
     }
 
-    if ((lexer->lookahead != '@') && (lexer->lookahead != '\\')) goto match_code_line;
+    if ((lexer->lookahead != '@') && (lexer->lookahead != '\\')) {
+        goto match_code_line;
+    }
     _consume(lexer);
 
-    if (lexer->lookahead != 'e') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'n') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'd') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'c') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'o') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'd') goto match_code_line;
-    _consume(lexer);
-
-    if (lexer->lookahead != 'e') goto match_code_line;
-    _consume(lexer);
+    if (!_consume_word(lexer, "endcode")) {
+        goto match_code_line;
+    }
 
     if (!valid_symbols[CODE_END]) {
         *result = false;
@@ -667,7 +665,11 @@ match_code_line:
         return true;
     }
 
-    while ((lexer->lookahead != '\r') && (lexer->lookahead != '\n') && !_is_eof(lexer)) {
+    while ((lexer->lookahead != '\n') && !_is_eof(lexer)) {
+        _consume(lexer);
+    }
+
+    if (lexer->lookahead == '\n') {
         _consume(lexer);
     }
 

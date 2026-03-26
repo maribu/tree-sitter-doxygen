@@ -788,8 +788,8 @@ static bool test_detect_code_line_markdown(void *state)
 {
     const struct test_params params = {
         .input = "int main(void)\r\n",
-        .marks = "xxxxxxxxxxxxxx",
-        .token_end = strlen("int main(void)"),
+        .marks = "xxxxxxxxxxxxxxxx",
+        .token_end = strlen("int main(void)\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
                       .code = CBMODE_MARKDOWN, .fence_len = strlen("```") },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
@@ -806,8 +806,8 @@ static bool test_detect_code_line_legacy(void *state)
 {
     const struct test_params params = {
         .input = "int main(void)\r\n",
-        .marks = "xxxxxxxxxxxxxx",
-        .token_end = strlen("int main(void)"),
+        .marks = "xxxxxxxxxxxxxxxx",
+        .token_end = strlen("int main(void)\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
                       .code = CBMODE_LEGACY, .fence_len = strlen("```") },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
@@ -824,12 +824,12 @@ static bool test_detect_code_line_command(void *state)
 {
     const struct test_params params = {
         .input = "int main(void)\r\n",
-        .marks = "xxxxxxxxxxxxxx",
-        .token_end = strlen("int main(void)"),
+        .marks = "xxxxxxxxxxxxxxxx",
+        .token_end = strlen("int main(void)\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
-                      .code = CBMODE_COMMAND, .fence_len = strlen("```") },
+                      .code = CBMODE_COMMAND },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
-                            .code = CBMODE_COMMAND, .fence_len = strlen("```") },
+                            .code = CBMODE_COMMAND },
         .symbol = CODE_LINE,
         .valid_symbols = code_line_code_end_valid,
     };
@@ -841,8 +841,8 @@ static bool test_detect_code_line_markdown_tricky(void *state)
 {
     const struct test_params params = {
         .input = "````\r\n",
-        .marks = "xxxx",
-        .token_end = strlen("````"),
+        .marks = "xxxxxx",
+        .token_end = strlen("````\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
                       .code = CBMODE_MARKDOWN, .fence_len = strlen("`````") },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
@@ -859,8 +859,8 @@ static bool test_detect_code_line_legacy_tricky(void *state)
 {
     const struct test_params params = {
         .input = "~~~~\r\n",
-        .marks = "xxxx",
-        .token_end = strlen("~~~~"),
+        .marks = "xxxxxx",
+        .token_end = strlen("~~~~\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
                       .code = CBMODE_LEGACY, .fence_len = strlen("~~~~~") },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
@@ -877,8 +877,8 @@ static bool test_detect_code_line_commend_tricky(void *state)
 {
     const struct test_params params = {
         .input = "@endcod3\r\n",
-        .marks = "xxxxxxxx",
-        .token_end = strlen("@endcod3"),
+        .marks = "xxxxxxxxxx",
+        .token_end = strlen("@endcod3\r\n"),
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
                       .code = CBMODE_COMMAND },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
