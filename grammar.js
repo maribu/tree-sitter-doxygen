@@ -484,10 +484,10 @@ export default grammar({
       optional(seq($.code_language, $._code_language_end)),
       $._linebreak,
       repeat(seq(
-        choice($._ext_new, $._ext_cont),
+        $._ext_cont,
         $.code_line,
       )),
-      choice($._ext_new, $._ext_cont),
+      $._ext_cont,
       $._code_end,
     ),
   }

@@ -172,6 +172,12 @@ static bool _assert_eq(unsigned line, const char *x_str, int64_t x,
 const bool all_symbols_valid[] = {
     true,  true,  true,  true,  true,  true,  true,  true,  true
 };
+const bool all_symbols_but_cont_valid[] = {
+    true,  false, true,  true,  true,  true,  true,  true,  true
+};
+const bool all_symbols_but_new_valid[] = {
+    false, true,  true,  true,  true,  true,  true,  true,  true
+};
 const bool code_symbols_valid[] = {
     false, false, false, false, true,  true,  true,  true,  true
 };
@@ -349,6 +355,21 @@ static bool test_c_detect_cont_no_strip(void *state)
     return _test_helper(state, &params);
 }
 
+static bool test_c_detect_cont_instead_of_new(void *state)
+{
+    const struct test_params params = {
+        .input = " *\n *\n",
+        .marks = " x",
+        .token_end = strlen(" *"),
+        .state_in = { .after_mode = false, .mode = MODE_COMMENT_C },
+        .state_expected = { .after_mode = false, .mode = MODE_COMMENT_C },
+        .symbol = DOC_CONT,
+        .valid_symbols = all_symbols_but_new_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
 static bool test_c_detect_new(void *state)
 {
     const struct test_params params = {
@@ -358,7 +379,7 @@ static bool test_c_detect_new(void *state)
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_C },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_C },
         .symbol = DOC_NEW,
-        .valid_symbols = all_symbols_valid,
+        .valid_symbols = all_symbols_but_cont_valid,
     };
 
     return _test_helper(state, &params);
@@ -439,6 +460,21 @@ static bool test_cxx_detect_cont(void *state)
     return _test_helper(state, &params);
 }
 
+static bool test_cxx_detect_cont_instead_of_new(void *state)
+{
+    const struct test_params params = {
+        .input = "///\n/// foo",
+        .marks = "xxx",
+        .token_end = strlen("///"),
+        .state_in = { .after_mode = false, .mode = MODE_COMMENT_CXX },
+        .state_expected = { .after_mode = false, .mode = MODE_COMMENT_CXX },
+        .symbol = DOC_CONT,
+        .valid_symbols = all_symbols_but_new_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
 static bool test_cxx_detect_new(void *state)
 {
     const struct test_params params = {
@@ -448,7 +484,7 @@ static bool test_cxx_detect_new(void *state)
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_CXX },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_CXX },
         .symbol = DOC_NEW,
-        .valid_symbols = all_symbols_valid,
+        .valid_symbols = all_symbols_but_cont_valid,
     };
 
     return _test_helper(state, &params);
@@ -574,6 +610,21 @@ static bool test_markdown_detect_cont(void *state)
     return _test_helper(state, &params);
 }
 
+static bool test_markdown_detect_cont_instead_of_new(void *state)
+{
+    const struct test_params params = {
+        .input = "\nabc\n",
+        .marks = "",
+        .token_end = strlen(""),
+        .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE },
+        .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE },
+        .symbol = DOC_CONT,
+        .valid_symbols = all_symbols_but_new_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
 static bool test_markdown_detect_new(void *state)
 {
     const struct test_params params = {
@@ -583,7 +634,7 @@ static bool test_markdown_detect_new(void *state)
         .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE },
         .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE },
         .symbol = DOC_NEW,
-        .valid_symbols = all_symbols_valid,
+        .valid_symbols = all_symbols_but_cont_valid,
     };
 
     return _test_helper(state, &params);
@@ -890,6 +941,23 @@ static bool test_detect_code_line_commend_tricky(void *state)
     return _test_helper(state, &params);
 }
 
+static bool test_detect_code_line_empty_line(void *state)
+{
+    const struct test_params params = {
+        .input = "\n\n",
+        .marks = "x",
+        .token_end = strlen("\n"),
+        .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
+                      .code = CBMODE_COMMAND },
+        .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
+                            .code = CBMODE_COMMAND },
+        .symbol = CODE_LINE,
+        .valid_symbols = code_line_code_end_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
 static bool test_detect_code_end_markdown(void *state)
 {
     const struct test_params params = {
@@ -955,12 +1023,14 @@ int main(void)
     RUN_TEST(test_uncommittet_detect_c_skip_empty);
     RUN_TEST(test_c_detect_cont);
     RUN_TEST(test_c_detect_cont_no_strip);
+    RUN_TEST(test_c_detect_cont_instead_of_new);
     RUN_TEST(test_c_detect_new);
     RUN_TEST(test_c_detect_comment_end);
     RUN_TEST(test_uncommitted_detect_cxx);
     RUN_TEST(test_uncommitted_detect_cxx_after);
     RUN_TEST(test_uncommitted_detect_cxx_skip_empty);
     RUN_TEST(test_cxx_detect_cont);
+    RUN_TEST(test_cxx_detect_cont_instead_of_new);
     RUN_TEST(test_cxx_detect_new);
     RUN_TEST(test_cxx_skip_commit_special);
     RUN_TEST(test_cxx_skip_commit_with_after_marker);
@@ -970,6 +1040,7 @@ int main(void)
     RUN_TEST(test_cxx_detect_comment_end_no_nl);
     RUN_TEST(test_uncommitted_detect_markdown);
     RUN_TEST(test_markdown_detect_cont);
+    RUN_TEST(test_markdown_detect_cont_instead_of_new);
     RUN_TEST(test_markdown_detect_new);
     RUN_TEST(test_markdown_detect_end_with_nl);
     RUN_TEST(test_markdown_detect_end_without_nl);
@@ -988,6 +1059,7 @@ int main(void)
     RUN_TEST(test_detect_code_line_markdown_tricky);
     RUN_TEST(test_detect_code_line_legacy_tricky);
     RUN_TEST(test_detect_code_line_commend_tricky);
+    RUN_TEST(test_detect_code_line_empty_line);
     RUN_TEST(test_detect_code_end_markdown);
     RUN_TEST(test_detect_code_end_legacy);
     RUN_TEST(test_detect_code_end_command);

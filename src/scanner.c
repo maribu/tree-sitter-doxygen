@@ -207,6 +207,10 @@ static bool _c_comments(Scanner *scanner, TSLexer *lexer,
     }
 
     if (lexer->lookahead == '\n') {
+        if (!valid_symbols[DOC_NEW] && valid_symbols[DOC_CONT]) {
+            lexer->result_symbol = DOC_CONT;
+            return true;
+        }
         _skip(lexer);
         return _c_comments(scanner, lexer, valid_symbols, true);
     }
@@ -305,6 +309,10 @@ static bool _cxx_comments(Scanner *scanner, TSLexer *lexer,
     }
 
     if (lexer->lookahead == '\n') {
+        if (!valid_symbols[DOC_NEW] && valid_symbols[DOC_CONT]) {
+            lexer->result_symbol = DOC_CONT;
+            return true;
+        }
         _skip(lexer);
         return _cxx_comments(scanner, lexer, valid_symbols, true);
     }
@@ -361,6 +369,10 @@ static bool _no_comment_processing(Scanner *scanner, TSLexer *lexer,
     }
 
     if (lexer->lookahead == '\n') {
+        if (!valid_symbols[DOC_NEW] && valid_symbols[DOC_CONT]) {
+            lexer->result_symbol = DOC_CONT;
+            return true;
+        }
         _skip(lexer);
         return _no_comment_processing(scanner, lexer, valid_symbols, true);
     }
