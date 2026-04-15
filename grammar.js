@@ -226,7 +226,6 @@ export default grammar({
         _cmd('defgroup'),
         _cmd('exception'),
         _cmd('page'),
-        _cmd('ref'),
         _cmd('requirement'),
         _cmd('retval'),
         _cmd('throw'),
