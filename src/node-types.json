@@ -484,10 +484,6 @@
             "named": false
           },
           {
-            "type": "ref",
-            "named": false
-          },
-          {
             "type": "related",
             "named": false
           },
