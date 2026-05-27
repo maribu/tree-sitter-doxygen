@@ -41,6 +41,39 @@ Markdown List
         (markdown_line)))))
 
 ===============================================================================
+Markdown Table followed by List
+===============================================================================
+
+| a  | b  |
+|:-- |:-- |
+| A1 | B1 |
+| A2 | B2 |
+
+ 1. one
+ 2. two
+    - two a
+    - two b
+ 3. three
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (paragraph
+      (markdown
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)))
+    (paragraph
+      (markdown
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)))))
+
+===============================================================================
 Code Block (@code style, language specified)
 ===============================================================================
 

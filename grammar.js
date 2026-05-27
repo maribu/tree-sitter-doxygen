@@ -24,10 +24,8 @@ export default grammar({
     [$._block_command_param],
     [$._block_command_with_description],
     [$._block_command_with_one_parameter_and_description],
-    [$._markdown_list],
-    [$._markdown_table],
     [$._parse_text],
-    [$._prefix_doc_body],
+    [$._prefix_doc_item],
   ],
 
   extras: _ => [
@@ -65,25 +63,27 @@ export default grammar({
       repeat($._linebreak),
     ),
 
-    _prefix_doc_body: $=> choice(
+    _prefix_doc_item: $=> choice(
       seq($._ext_new, $.paragraph),
       seq(
         choice($._ext_new, $._ext_cont),
         choice($.block_command, $.code_block),
+        $._linebreak,
       ),
       seq(
         choice($._ext_new, $._ext_cont), $.header,
-        optional(seq($._linebreak, $._ext_cont, $.paragraph)),
+        optional(seq($._ext_cont, $.paragraph)),
       ),
     ),
 
+    _prefix_doc_item_last: $=> choice(
+      seq(choice($._ext_new, $._ext_cont), $.block_command),
+      seq($._ext_new, alias($._parse_text, $.paragraph)),
+    ),
+
     prefix_doc: $ => seq(
-      optional($._prefix_doc_body),
-      repeat(seq(
-        $._linebreak,
-        $._prefix_doc_body,
-      )),
-      optional($._linebreak),
+      repeat($._prefix_doc_item),
+      optional($._prefix_doc_item_last),
       $._ext_end,
       repeat($._linebreak),
     ),
@@ -92,6 +92,7 @@ export default grammar({
     header: $ => seq(
       '#',
       field('title', /[^\r\n]+/),
+      $._linebreak,
     ),
 
     // Block commands: Parse on until either an empty line or a new block
@@ -343,7 +344,7 @@ export default grammar({
 
     paragraph: $ => choice(
       $.markdown,
-      prec(-1, $._parse_text),
+      prec(-1, seq($._parse_text, $._linebreak)),
     ),
 
     content: $ => repeat1($._inline),
@@ -453,28 +454,29 @@ export default grammar({
       $._markdown_list,
     ),
 
-    _markdown_table: $ => seq(
+    _markdown_table: $ => prec.right(seq(
       alias($._markdown_table_row, $.markdown_line),
-      $._linebreak, $._ext_cont, alias($._markdown_table_line, $.markdown_line),
-      repeat(seq($._linebreak, $._ext_cont, alias($._markdown_table_row, $.markdown_line))),
-    ),
+      $._ext_cont, alias($._markdown_table_line, $.markdown_line),
+      repeat(seq($._ext_cont, alias($._markdown_table_row, $.markdown_line))),
+    )),
     _markdown_table_row: $ => seq(
-      '|', repeat1(seq(/[^\r\n\|]+/, '|')),
+      '|', repeat1(seq(/[^\r\n\|]+/, '|')), $._linebreak,
     ),
     _markdown_table_line: $ => seq(
-      '|', repeat1(seq(/[\- \:]+/, '|')),
+      '|', repeat1(seq(/[\- \:]+/, '|')), $._linebreak,
     ),
 
-    _markdown_list: $ => seq(
+    _markdown_list: $ => prec.right(seq(
       alias($._markdown_list_row, $.markdown_line),
-      repeat(seq($._linebreak, $._ext_cont, alias($._markdown_list_row, $.markdown_line))),
-    ),
-    _markdown_list_row: _ => seq(
+      repeat(seq($._ext_cont, alias($._markdown_list_row, $.markdown_line))),
+    )),
+    _markdown_list_row: $ => seq(
       choice(
         /[\*\-][\t ]/,
         /[0-9][\.\)][\t ]/,
       ),
       /[^\r\n]*/,
+      $._linebreak,
     ),
 
     // code blocks  (for injection queries)
