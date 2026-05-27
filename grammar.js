@@ -459,25 +459,24 @@ export default grammar({
       $._ext_cont, alias($._markdown_table_line, $.markdown_line),
       repeat(seq($._ext_cont, alias($._markdown_table_row, $.markdown_line))),
     )),
-    _markdown_table_row: $ => seq(
-      '|', repeat1(seq(/[^\r\n\|]+/, '|')), $._linebreak,
-    ),
-    _markdown_table_line: $ => seq(
-      '|', repeat1(seq(/[\- \:]+/, '|')), $._linebreak,
-    ),
+    _markdown_table_row: _ => token(seq(
+      '|', repeat1(seq(/[^\r\n\|]+/, '|')), /\r?\n/,
+    )),
+    _markdown_table_line: _ => token(seq(
+      '|', repeat1(seq(/[\- \:]+/, '|')), /\r?\n/,
+    )),
 
     _markdown_list: $ => prec.right(seq(
       alias($._markdown_list_row, $.markdown_line),
       repeat(seq($._ext_cont, alias($._markdown_list_row, $.markdown_line))),
     )),
-    _markdown_list_row: $ => seq(
+    _markdown_list_row: $ => token(seq(
       choice(
         /[\*\-][\t ]/,
         /[0-9][\.\)][\t ]/,
       ),
-      /[^\r\n]*/,
-      $._linebreak,
-    ),
+      /[^\r\n]*\r?\n/,
+    )),
 
     // code blocks  (for injection queries)
     code_block: $ => seq(
