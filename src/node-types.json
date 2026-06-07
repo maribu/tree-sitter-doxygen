@@ -970,6 +970,11 @@
     }
   },
   {
+    "type": "markdown_line",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "math",
     "named": true,
     "fields": {}
@@ -1538,10 +1543,6 @@
   {
     "type": "manonly",
     "named": false
-  },
-  {
-    "type": "markdown_line",
-    "named": true
   },
   {
     "type": "memberof",

@@ -5911,7 +5911,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "_markdown_list_row"
+              "name": "_markdown_list_row_first"
             },
             "named": true,
             "value": "markdown_line"
@@ -5929,7 +5929,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "_markdown_list_row"
+                    "name": "_markdown_list_row_cont"
                   },
                   "named": true,
                   "value": "markdown_line"
@@ -5940,7 +5940,7 @@
         ]
       }
     },
-    "_markdown_list_row": {
+    "_markdown_list_row_first": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -5964,6 +5964,40 @@
           }
         ]
       }
+    },
+    "_markdown_list_row_cont": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_markdown_list_row_first"
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "  "
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\t"
+                  }
+                ]
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\r\\n]+\\r?\\n"
+              }
+            ]
+          }
+        }
+      ]
     },
     "code_block": {
       "type": "SEQ",
