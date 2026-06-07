@@ -467,16 +467,20 @@ export default grammar({
     )),
 
     _markdown_list: $ => prec.right(seq(
-      alias($._markdown_list_row, $.markdown_line),
-      repeat(seq($._ext_cont, alias($._markdown_list_row, $.markdown_line))),
+      alias($._markdown_list_row_first, $.markdown_line),
+      repeat(seq($._ext_cont, alias($._markdown_list_row_cont, $.markdown_line))),
     )),
-    _markdown_list_row: $ => token(seq(
+    _markdown_list_row_first: $ => token(seq(
       choice(
         /[\*\-][\t ]/,
         /[0-9][\.\)][\t ]/,
       ),
       /[^\r\n]*\r?\n/,
     )),
+    _markdown_list_row_cont: $ => choice(
+      $._markdown_list_row_first,
+      token(seq(choice('  ', '\t'), /[^\r\n]+\r?\n/))
+    ),
 
     // code blocks  (for injection queries)
     code_block: $ => seq(

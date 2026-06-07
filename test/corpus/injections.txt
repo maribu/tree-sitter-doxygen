@@ -74,6 +74,36 @@ Markdown Table followed by List
         (markdown_line)))))
 
 ===============================================================================
+Markdown list with list item split over multiple lines
+===============================================================================
+
+/**
+ * 1. one
+ *    - one.one
+ * 2. two
+ *    - two.one
+ *      still two.one
+ *    - two.two
+ * 3. three
+*     this still is belongs to three
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (paragraph
+      (markdown
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)
+        (markdown_line)))))
+
+===============================================================================
 Code Block (@code style, language specified)
 ===============================================================================
 
