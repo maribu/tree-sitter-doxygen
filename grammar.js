@@ -373,7 +373,10 @@ export default grammar({
     _special_char: _ => token(/[#\[\]\(\)\@\\\*`"\|~]/),
 
     // Markdown styling
-    _styleable: _ => /[A-Za-z][A-Za-z ][A-Za-z]*/,
+    _styleable: _ => choice(
+      /[A-Za-z][A-Za-z ][A-Za-z]*/,
+      /[A-Za-z]/,
+    ),
     bold: $ => prec.left(seq('**', field('text', $._styleable), '**')),
     italic: $ => prec.left(seq('*', field('text', $._styleable), '*')),
     code: $ => prec.left(seq('`', field('code', /[^`\r\n]*/), '`')),
