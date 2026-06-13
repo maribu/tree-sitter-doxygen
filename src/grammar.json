@@ -5077,8 +5077,17 @@
       }
     },
     "_styleable": {
-      "type": "PATTERN",
-      "value": "[A-Za-z][A-Za-z ][A-Za-z]*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z][A-Za-z ][A-Za-z]*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z]"
+        }
+      ]
     },
     "bold": {
       "type": "PREC_LEFT",
