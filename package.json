@@ -1,11 +1,11 @@
 {
   "name": "tree-sitter-doxygen",
   "version": "0.0.1",
-  "description": "tree-sitter grammer for Doxygen markup",
+  "description": "tree-sitter grammar for Doxygen markup",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://codeberg.org/maribu/tree-sitter-doxygen.git"
+    "url": "git+https://github.com/maribu/tree-sitter-doxygen.git"
   },
   "funding": "",
   "license": "0BSD",
