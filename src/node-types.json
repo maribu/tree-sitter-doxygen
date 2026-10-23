@@ -744,6 +744,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "email",
           "named": true
         },
@@ -923,6 +927,10 @@
         },
         {
           "type": "code",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -1193,6 +1201,11 @@
   {
     "type": "collaborationgraph",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
   },
   {
     "type": "concept",

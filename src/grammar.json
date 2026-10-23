@@ -5213,6 +5213,10 @@
                 "type": "SYMBOL",
                 "name": "_special_char"
               }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "comment"
             }
           ]
         }
@@ -6227,6 +6231,10 @@
     {
       "type": "PATTERN",
       "value": "[ \\t]+"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [
@@ -6283,6 +6291,10 @@
     {
       "type": "SYMBOL",
       "name": "_code_end"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "inline": [],
