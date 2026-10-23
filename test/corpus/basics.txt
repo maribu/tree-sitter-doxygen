@@ -186,3 +186,27 @@ C style comments (/** flavor, multiple lines, postfix)
     (block_command
       (description
         (content)))))
+
+===============================================================================
+HTML style comments
+===============================================================================
+
+/**
+ * @brief Description
+ * <!-- this is a @param foo comment -->
+ * @return Description of the <!-- comment in the middle --> return value
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (description
+        (content)
+        (content
+          (comment))))
+    (block_command
+      (description
+        (content
+          (comment))))))

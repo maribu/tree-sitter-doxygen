@@ -170,25 +170,25 @@ static bool _assert_eq(unsigned line, const char *x_str, int64_t x,
  * @{
  */
 const bool all_symbols_valid[] = {
-    true,  true,  true,  true,  true,  true,  true,  true,  true
+    true,  true,  true,  true,  true,  true,  true,  true,  true, true
 };
 const bool all_symbols_but_cont_valid[] = {
-    true,  false, true,  true,  true,  true,  true,  true,  true
+    true,  false, true,  true,  true,  true,  true,  true,  true, true
 };
 const bool all_symbols_but_new_valid[] = {
-    false, true,  true,  true,  true,  true,  true,  true,  true
+    false, true,  true,  true,  true,  true,  true,  true,  true, true
 };
 const bool code_symbols_valid[] = {
-    false, false, false, false, true,  true,  true,  true,  true
+    false, false, false, false, true,  true,  true,  true,  true, true
 };
 const bool code_symbols_but_line_valid[] = {
-    false, false, false, false, true,  true,  true,  false, true
+    false, false, false, false, true,  true,  true,  false, true, true
 };
 const bool code_symbols_but_line_and_lang_end_valid[] = {
-    false, false, false, false, true,  true,  false, false, true
+    false, false, false, false, true,  true,  false, false, true, true
 };
 const bool code_line_code_end_valid[] = {
-    false, false, false, false, false, false, false, true, true
+    false, false, false, false, false, false, false, true, true, true
 };
 
 /**
@@ -1010,6 +1010,23 @@ static bool test_detect_code_end_command(void *state)
 
     return _test_helper(state, &params);
 }
+
+static bool test_html_comment(void *state)
+{
+    const struct test_params params = {
+        .input = "<!-- foo -->\r\n",
+        .marks = "xxxxxxxxxxxx",
+        .token_end = strlen("<!-- foo -->"),
+        .state_in = { .after_mode = false, .mode = MODE_COMMENT_NONE,
+                      .code = CBMODE_NONE },
+        .state_expected = { .after_mode = false, .mode = MODE_COMMENT_NONE,
+                            .code = CBMODE_NONE },
+        .symbol = HTML_COMMENT,
+        .valid_symbols = all_symbols_valid,
+    };
+
+    return _test_helper(state, &params);
+}
 /** @} */
 
 int main(void)
@@ -1063,6 +1080,7 @@ int main(void)
     RUN_TEST(test_detect_code_end_markdown);
     RUN_TEST(test_detect_code_end_legacy);
     RUN_TEST(test_detect_code_end_command);
+    RUN_TEST(test_html_comment);
 
     tree_sitter_doxygen_external_scanner_destroy(state);
 

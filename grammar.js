@@ -28,8 +28,9 @@ export default grammar({
     [$._prefix_doc_item],
   ],
 
-  extras: _ => [
-    /[ \t]+/
+  extras: $ => [
+    /[ \t]+/,
+    $.comment
   ],
 
   word: $ => $._word,
@@ -44,6 +45,7 @@ export default grammar({
     $._code_language_end,
     $.code_line,
     $._code_end,
+    $.comment,
   ],
 
   rules: {
@@ -371,6 +373,7 @@ export default grammar({
         $.email,
         prec(-1, $._word),
         prec(-2, $._special_char),
+        $.comment,
       )
     ),
 

@@ -45,6 +45,7 @@ enum TokenType {
     CODE_LANG_END,      ///< Terminal of the language specifier
     CODE_LINE,          ///< A line of code
     CODE_END,           ///< End of a fenced code block
+    HTML_COMMENT,       ///< HTML comment
 };
 
 typedef enum {
@@ -690,6 +691,50 @@ match_code_line:
     return true;
 }
 
+static bool _scan_html_comment(Scanner *scanner, TSLexer *lexer)
+{
+    lexer->result_symbol = HTML_COMMENT;
+    if (scanner->mode == MODE_COMMENT_C) {
+        while (1) {
+            switch (lexer->lookahead) {
+            case '*':
+                lexer->mark_end(lexer);
+                _consume(lexer);
+                if (lexer->lookahead == '/') {
+                    _consume(lexer);
+                    lexer->mark_end(lexer);
+                    return true;
+                }
+                break;
+            case '-':
+                if (_consume_word(lexer, "-->")) {
+                    lexer->mark_end(lexer);
+                    return true;
+                }
+                break;
+            }
+            if (_is_eof(lexer)) {
+                lexer->mark_end(lexer);
+                return true;
+            }
+            _consume(lexer);
+        }
+    }
+
+    while (1) {
+        if (lexer->lookahead == '-') {
+            if (_consume_word(lexer, "-->")) {
+                return true;
+            }
+        } else {
+            _consume(lexer);
+        }
+        if (_is_eof(lexer)) {
+            return true;
+        }
+    }
+}
+
 bool tree_sitter_doxygen_external_scanner_scan(void *payload,
                                                TSLexer *lexer,
                                                const bool *valid_symbols)
@@ -697,6 +742,18 @@ bool tree_sitter_doxygen_external_scanner_scan(void *payload,
     Scanner *scanner = payload;
 
     if (scanner->mode != MODE_UNCOMMITTED) {
+        if (lexer->lookahead == '<') {
+            if (_consume_word(lexer, "<!--")) {
+                if (!valid_symbols[HTML_COMMENT]) {
+                    return false;
+                }
+                return _scan_html_comment(scanner, lexer);
+            }
+
+            lexer->result_symbol = DOC_CONT;
+            return valid_symbols[DOC_CONT];
+        }
+
         if ((valid_symbols[CODE_START]) && (scanner->code == CBMODE_NONE)) {
             bool result = false;
             if (_scan_code_start(&result, scanner, lexer)) {

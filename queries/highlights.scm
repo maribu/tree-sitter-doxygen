@@ -1,3 +1,5 @@
+(comment) @comment
+
 ; block commands
 (block_command
   command: _ @keyword)
