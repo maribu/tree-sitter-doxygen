@@ -347,3 +347,20 @@
       (parameter)
       (description
         (content)))))
+
+===============================================================================
+@section command
+===============================================================================
+
+/**
+ * @section anchor This is the Section title
+ */
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (prefix_doc
+    (block_command
+      (parameter)
+      (description
+        (content)))))
