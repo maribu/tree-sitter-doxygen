@@ -5,7 +5,7 @@
     "fields": {
       "command": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "addindex",
@@ -424,6 +424,10 @@
             "named": false
           },
           {
+            "type": "par",
+            "named": false
+          },
+          {
             "type": "param",
             "named": false
           },
@@ -647,10 +651,6 @@
       "required": false,
       "types": [
         {
-          "type": "block_command_with_optional_title_and_description",
-          "named": true
-        },
-        {
           "type": "code_parameter",
           "named": true
         },
@@ -660,36 +660,6 @@
         },
         {
           "type": "param_attribute",
-          "named": true
-        },
-        {
-          "type": "parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "block_command_with_optional_title_and_description",
-    "named": true,
-    "fields": {
-      "command": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "par",
-            "named": false
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "description",
           "named": true
         },
         {

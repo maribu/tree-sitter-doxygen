@@ -303,7 +303,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "block_command_with_optional_title_and_description"
+          "name": "_block_command_with_optional_title_and_description"
         },
         {
           "type": "SYMBOL",
@@ -3090,7 +3090,7 @@
         }
       ]
     },
-    "block_command_with_optional_title_and_description": {
+    "_block_command_with_optional_title_and_description": {
       "type": "SEQ",
       "members": [
         {
