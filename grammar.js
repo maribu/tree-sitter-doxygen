@@ -102,7 +102,7 @@ export default grammar({
       $._block_command_no_args,
       $._block_command_with_description,
       $._block_command_with_one_parameter_and_description,
-      $.block_command_with_optional_title_and_description,
+      $._block_command_with_optional_title_and_description,
       $._block_command_with_parameters,
       $._block_command_with_code,
     ),
@@ -237,7 +237,7 @@ export default grammar({
       optional(seq($.parameter, optional($.description))),
     ),
 
-    block_command_with_optional_title_and_description: $ => seq(
+    _block_command_with_optional_title_and_description: $ => seq(
       choice(
         _cmd('par'),
       ),

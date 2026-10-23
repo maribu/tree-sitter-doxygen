@@ -327,9 +327,8 @@
 (source_file
   (prefix_doc
     (block_command
-      (block_command_with_optional_title_and_description
-        (description
-          (content))))))
+      (description
+        (content)))))
 
 ===============================================================================
 @par command (with title)
@@ -345,7 +344,6 @@
 (source_file
   (prefix_doc
     (block_command
-      (block_command_with_optional_title_and_description
-        (parameter)
-        (description
-          (content))))))
+      (parameter)
+      (description
+        (content)))))
