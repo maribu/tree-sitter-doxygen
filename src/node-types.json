@@ -428,6 +428,10 @@
             "named": false
           },
           {
+            "type": "paragraph",
+            "named": false
+          },
+          {
             "type": "param",
             "named": false
           },
@@ -532,6 +536,10 @@
             "named": false
           },
           {
+            "type": "section",
+            "named": false
+          },
+          {
             "type": "showdate",
             "named": false
           },
@@ -573,6 +581,22 @@
           },
           {
             "type": "struct",
+            "named": false
+          },
+          {
+            "type": "subparagraph",
+            "named": false
+          },
+          {
+            "type": "subsection",
+            "named": false
+          },
+          {
+            "type": "subsubparagraph",
+            "named": false
+          },
+          {
+            "type": "subsubsection",
             "named": false
           },
           {
@@ -1567,6 +1591,10 @@
     "named": false
   },
   {
+    "type": "paragraph",
+    "named": false
+  },
+  {
     "type": "param",
     "named": false
   },
@@ -1683,6 +1711,10 @@
     "named": false
   },
   {
+    "type": "section",
+    "named": false
+  },
+  {
     "type": "showdate",
     "named": false
   },
@@ -1724,6 +1756,22 @@
   },
   {
     "type": "struct",
+    "named": false
+  },
+  {
+    "type": "subparagraph",
+    "named": false
+  },
+  {
+    "type": "subsection",
+    "named": false
+  },
+  {
+    "type": "subsubparagraph",
+    "named": false
+  },
+  {
+    "type": "subsubsection",
     "named": false
   },
   {
