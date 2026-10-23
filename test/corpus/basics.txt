@@ -155,9 +155,8 @@ C style comments (/** flavor, multiple lines, postfix)
 -------------------------------------------------------------------------------
 
 (source_file
-  (prefix_doc
-    (paragraph
-      (content))))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 C style comments (/*! flavor, single line, postfix)
@@ -172,20 +171,18 @@ C style comments (/*! flavor, single line, postfix)
     (content)))
 
 ===============================================================================
-C style comments (/** flavor, multiple lines, postfix)
+C style comments (/*! flavor, multiple lines, postfix)
 ===============================================================================
 
 /*!<
- * @brief Some text
+ * Some text
  */
 
 -------------------------------------------------------------------------------
 
 (source_file
-  (prefix_doc
-    (block_command
-      (description
-        (content)))))
+  (postfix_doc
+    (content)))
 
 ===============================================================================
 HTML style comments

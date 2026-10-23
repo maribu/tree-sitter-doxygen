@@ -157,7 +157,7 @@ static void _scanner_clear(Scanner *scanner)
  */
 static bool _c_comments(Scanner *scanner, TSLexer *lexer,
                         const bool *valid_symbols,
-                        bool new_block)
+                        enum TokenType type)
 {
     bool at_line_start = lexer->get_column(lexer) == 0;
     lexer->mark_end(lexer);
@@ -167,10 +167,10 @@ static bool _c_comments(Scanner *scanner, TSLexer *lexer,
     }
 
     if (lexer->lookahead != '*') {
-        if (!valid_symbols[DOC_CONT]) {
+        if (!valid_symbols[type]) {
             return false;
         }
-        lexer->result_symbol = DOC_CONT;
+        lexer->result_symbol = type;
         return true;
     }
 
@@ -213,23 +213,14 @@ static bool _c_comments(Scanner *scanner, TSLexer *lexer,
             return true;
         }
         _skip(lexer);
-        return _c_comments(scanner, lexer, valid_symbols, true);
+        return _c_comments(scanner, lexer, valid_symbols, DOC_NEW);
     }
 
-    if (new_block) {
-        if (new_block && !valid_symbols[DOC_NEW]) {
-            return false;
-        }
-
-        lexer->result_symbol = DOC_NEW;
-        return true;
-    }
-
-    if (!valid_symbols[DOC_CONT]) {
+    if (!valid_symbols[type]) {
         return false;
     }
 
-    lexer->result_symbol = DOC_CONT;
+    lexer->result_symbol = type;
     return true;
 }
 
@@ -443,6 +434,8 @@ static bool _commit_to_mode(Scanner *scanner, TSLexer *lexer,
         return false;
     }
 
+    enum TokenType type = DOC_NEW;
+
     if (lexer->lookahead == '<') {
         /* This clearly is a DOC_AFTER symbol. If the grammar does not accept
          * it here, we rather back out altogether than producing a wrong
@@ -453,10 +446,10 @@ static bool _commit_to_mode(Scanner *scanner, TSLexer *lexer,
             return false;
         }
         _consume(lexer);
-        lexer->result_symbol = DOC_AFTER;
+        type = DOC_AFTER;
         scanner->after_mode = true;
     } else {
-        lexer->result_symbol = DOC_NEW;
+        type = DOC_NEW;
     }
 
     if (_is_space(lexer)) {
@@ -481,12 +474,13 @@ static bool _commit_to_mode(Scanner *scanner, TSLexer *lexer,
         default:
             break;
         case MODE_COMMENT_C:
-            return _c_comments(scanner, lexer, valid_symbols, true);
+            return _c_comments(scanner, lexer, valid_symbols, type);
         case MODE_COMMENT_CXX:
             return _cxx_comments(scanner, lexer, valid_symbols, true);
         }
     }
 
+    lexer->result_symbol = type;
     return true;
 }
 
@@ -799,7 +793,7 @@ bool tree_sitter_doxygen_external_scanner_scan(void *payload,
     case MODE_UNCOMMITTED:
         return _commit_to_mode(scanner, lexer, valid_symbols);
     case MODE_COMMENT_C:
-        return _c_comments(scanner, lexer, valid_symbols, false);
+        return _c_comments(scanner, lexer, valid_symbols, DOC_CONT);
     case MODE_COMMENT_CXX:
         return _cxx_comments(scanner, lexer, valid_symbols, false);
     case MODE_COMMENT_NONE:

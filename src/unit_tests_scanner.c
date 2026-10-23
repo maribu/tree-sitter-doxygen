@@ -310,6 +310,36 @@ static bool test_uncommittet_detect_c_after(void *state)
     return _test_helper(state, &params);
 }
 
+static bool test_uncommittet_detect_c_after2(void *state)
+{
+    const struct test_params params = {
+        .input = "/**<\r\n",
+        .marks = "xxxx  ",
+        .token_end = strlen("/**<\r\n"),
+        .state_in = { .after_mode = false, .mode = MODE_UNCOMMITTED },
+        .state_expected = { .after_mode = true, .mode = MODE_COMMENT_C },
+        .symbol = DOC_AFTER,
+        .valid_symbols = all_symbols_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
+static bool test_uncommittet_detect_c_after3(void *state)
+{
+    const struct test_params params = {
+        .input = "/*!<\r\n",
+        .marks = "xxxx  ",
+        .token_end = strlen("/*!<\r\n"),
+        .state_in = { .after_mode = false, .mode = MODE_UNCOMMITTED },
+        .state_expected = { .after_mode = true, .mode = MODE_COMMENT_C },
+        .symbol = DOC_AFTER,
+        .valid_symbols = all_symbols_valid,
+    };
+
+    return _test_helper(state, &params);
+}
+
 static bool test_uncommittet_detect_c_skip_empty(void *state)
 {
     const struct test_params params = {
@@ -1037,6 +1067,8 @@ int main(void)
 
     RUN_TEST(test_uncommittet_detect_c);
     RUN_TEST(test_uncommittet_detect_c_after);
+    RUN_TEST(test_uncommittet_detect_c_after2);
+    RUN_TEST(test_uncommittet_detect_c_after3);
     RUN_TEST(test_uncommittet_detect_c_skip_empty);
     RUN_TEST(test_c_detect_cont);
     RUN_TEST(test_c_detect_cont_no_strip);
