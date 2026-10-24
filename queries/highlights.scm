@@ -65,3 +65,10 @@
 (postfix_doc
   .
   (content) @markup.heading)
+
+; highlight `description` in `/**< [in] description */` the same way as in
+; `/** @param[in] foo description */`
+(postfix_doc
+  .
+  (param_attribute)
+  (content) @string)
