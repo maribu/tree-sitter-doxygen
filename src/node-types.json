@@ -992,10 +992,6 @@
         {
           "type": "content",
           "named": true
-        },
-        {
-          "type": "markdown",
-          "named": true
         }
       ]
     }
@@ -1037,6 +1033,10 @@
         },
         {
           "type": "header",
+          "named": true
+        },
+        {
+          "type": "markdown",
           "named": true
         },
         {

@@ -89,6 +89,23 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "PREC",
+          "value": -1,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_ext_new"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "paragraph"
+              }
+            ]
+          }
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -97,7 +114,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "paragraph"
+              "name": "markdown"
             }
           ]
         },
@@ -5105,10 +5122,6 @@
     "paragraph": {
       "type": "CHOICE",
       "members": [
-        {
-          "type": "SYMBOL",
-          "name": "markdown"
-        },
         {
           "type": "PREC",
           "value": -1,
