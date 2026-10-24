@@ -53,3 +53,15 @@
   command: _ @_cmd @keyword
   (description (content) @markup.heading)
   (#any-of? @_cmd "brief"))
+
+; auto-brief the first paragraph in a prefix-doc if and only if it is the first
+; child node
+(prefix_doc
+  .
+  (paragraph
+    (content) @markup.heading))
+
+; auto-brief content in postfix doc
+(postfix_doc
+  .
+  (content) @markup.heading)

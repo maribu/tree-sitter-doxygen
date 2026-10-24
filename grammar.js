@@ -66,7 +66,8 @@ export default grammar({
     ),
 
     _prefix_doc_item: $=> choice(
-      seq($._ext_new, $.paragraph),
+      prec(-1, seq($._ext_new, $.paragraph)),
+      seq($._ext_new, $.markdown),
       seq(
         choice($._ext_new, $._ext_cont),
         choice($.block_command, $.code_block),
@@ -351,7 +352,6 @@ export default grammar({
     ),
 
     paragraph: $ => choice(
-      $.markdown,
       prec(-1, seq($._parse_text, $._linebreak)),
     ),
 

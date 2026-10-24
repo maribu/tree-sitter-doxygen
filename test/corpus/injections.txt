@@ -11,12 +11,11 @@ Markdown Table
 
 (source_file
   (prefix_doc
-    (paragraph
-      (markdown
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)))))
+    (markdown
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line))))
 
 ===============================================================================
 Markdown List
@@ -32,13 +31,12 @@ Markdown List
 
 (source_file
   (prefix_doc
-    (paragraph
-      (markdown
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)))))
+    (markdown
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line))))
 
 ===============================================================================
 Markdown Table followed by List
@@ -59,19 +57,17 @@ Markdown Table followed by List
 
 (source_file
   (prefix_doc
-    (paragraph
-      (markdown
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)))
-    (paragraph
-      (markdown
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)))))
+    (markdown
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line))
+    (markdown
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line))))
 
 ===============================================================================
 Markdown list with list item split over multiple lines
@@ -92,16 +88,15 @@ Markdown list with list item split over multiple lines
 
 (source_file
   (prefix_doc
-    (paragraph
-      (markdown
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)
-        (markdown_line)))))
+    (markdown
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line)
+      (markdown_line))))
 
 ===============================================================================
 Code Block (@code style, language specified)
