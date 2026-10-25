@@ -50,9 +50,8 @@
   (#any-of? @_cmd "warning" "note"))
 
 (block_command
-  command: _ @_cmd @keyword
-  (description (content) @markup.heading)
-  (#any-of? @_cmd "brief"))
+  command: "brief" @keyword
+  (description (content) @markup.heading))
 
 ; auto-brief the first paragraph in a prefix-doc if and only if it is the first
 ; child node
