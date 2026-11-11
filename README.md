@@ -6,6 +6,15 @@ It supports most of the [special commands][] of Doxygen, basic markdown styling
 natively, and markdown lists and tables via injections. It also supports code
 blocks with injections.
 
+# Grammar in Use
+
+![Screenshot of helix editor using this grammar for syntax highlighting](screenshot.png)
+
+This grammar can be used to provide syntax highlighting for Doxygen comments,
+as shown in the screenshot above with the [helix editor].
+
+[helix editor]: https://helix-editor.com/
+
 Terminology
 -----------
 
